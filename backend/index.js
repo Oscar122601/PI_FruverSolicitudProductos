@@ -96,3 +96,16 @@ app.delete('/lote/:idlote', (req, res) => {
 app.listen(5000, () => {
   console.log('Servidor corriendo en el puerto 5000');
 });
+// Footer.js
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <p>© 2024 Fruver. Todos los derechos reservados.</p>
+        <p>Contacto: contacto@fruver.com</p>
+      </div>
+    </footer>
+  );
+};
+
+export default index;

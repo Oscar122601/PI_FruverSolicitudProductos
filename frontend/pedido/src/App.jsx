@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import LogoFruver from './assets/logo.png'; // Importa el logo
 import Swal from 'sweetalert2';
+import 'font-awesome/css/font-awesome.min.css';
 
 const Lote = () => {
   const [productos, setProductos] = useState([]);
@@ -256,7 +257,7 @@ const Lote = () => {
                 <td>
                   <button 
                     className="delete-btn" 
-                    onClick={() => handleDelete(lote.idlote)}>
+                    onClick={() => handleDelete(lote.idlote)} >
                     Eliminar
                   </button>
                 </td>
@@ -265,8 +266,51 @@ const Lote = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section about">
+            <h3>Acerca de Fruver</h3>
+            <p>
+              Fruver es una empresa dedicada a la distribución de productos frescos de alta calidad.
+              Nuestro compromiso es ofrecer lo mejor para nuestros clientes, garantizando siempre productos
+              frescos y a precios competitivos.
+            </p>
+          </div>
+
+          <div className="footer-section links">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+              <li><a href="/productos">Productos</a></li>
+              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="/politica-privacidad">Política de Privacidad</a></li>
+              <li><a href="/terminos">Términos y Condiciones</a></li>
+            </ul>
+          </div>
+
+          <div className="footer-section contact">
+            <h3>Contacto</h3>
+            <p>Dirección: Cr 33 # 110 24, floridablanca, santander</p>
+            <p>Email: <a href="mailto:contacto@fruver.com">Elmana@fruver.com</a></p>
+            <p>Tel: +57 301 698 1025</p>
+            <div className="social-links">
+              <a href="https://www.facebook.com/portaldefrutas/?locale=es_LA" target="_blank" rel="noopener noreferrer">
+                <i className="fa fa-facebook"></i>
+              </a>
+            </div>
+          </div>
+
+          
+        </div>
+
+        <div className="footer-bottom">
+          <p>© 2024 Elmana Fruver. Todos los derechos reservados.</p>
+        </div>
+      </footer>
     </div>
   );
 };
 
 export default Lote;
+

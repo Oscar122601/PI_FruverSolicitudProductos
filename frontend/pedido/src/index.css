@@ -1,0 +1,256 @@
+/* ===================== */
+/* Estilos para el Navbar */
+/* ===================== */
+.navbar {
+  background-color: #2e8b57; /* Color verde */
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand img {
+  width: 160px !important; /* Tamaño del logo duplicado */
+  background-color: white; /* Fondo blanco */
+  padding: 5px; /* Espaciado alrededor del logo */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Transición para el hover */
+}
+
+.nav-link:hover {
+  color: #c2f0c2; /* Verde claro en hover */
+}
+
+/* Botones de Configuración y Salir */
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-buttons button {
+  background-color: #d3e0d3; /* Fondo gris claro */
+  color: #333;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px; /* Bordes redondeados */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición para hover */
+}
+
+.navbar-buttons button:hover {
+  background-color: #a5c5a5; /* Color más oscuro en hover */
+}
+
+/* ========================= */
+/* Estilos para la Responsividad */
+/* ========================= */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .navbar-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+}
+
+
+/* Contenedor principal */
+.lote-container {
+  width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  color: #4CAF50;
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+/* Estilos del formulario */
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.submit-btn {
+  grid-column: span 2;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* Tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.table tr:nth-child(even) {
+  background-color: #eaf2e9;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #f5fdf4;
+}
+
+.table tr:hover {
+  background-color: #d9f7d1;
+  cursor: pointer;
+}
+
+.expired-warning {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Estilos para la tabla con colores en escalas de verde */
+.table td {
+  text-align: center;
+  background-color: #f9f9f9;
+  border-color: #e0e0e0;
+}
+
+.table tr:nth-child(even) td {
+  background-color: #d9f7d1;  /* verde claro */
+}
+
+.table tr:nth-child(odd) td {
+  background-color: #f1fdf1;  /* verde muy claro */
+}
+
+.table tr:hover td {
+  background-color: #c8e6c9;  /* verde suave al pasar el mouse */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+}

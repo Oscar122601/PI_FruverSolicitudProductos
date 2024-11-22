@@ -3,6 +3,7 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import LogoFruver from './assets/logo.png'; // Importa el logo
+import Swal from 'sweetalert2';
 
 const Lote = () => {
   const [productos, setProductos] = useState([]);
@@ -48,12 +49,31 @@ const Lote = () => {
     });
   };
 
+  // Función para verificar si la fecha de caducidad está vencida
+  const verificarVencimiento = (fechaCad) => {
+    const fechaActual = new Date();
+    if (new Date(fechaCad) < fechaActual) {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Fecha Vencida!',
+        text: 'No se puede agregar un lote con fecha de caducidad vencida.',
+      });
+      return true; // Indica que la fecha está vencida
+    }
+    return false; // La fecha no está vencida
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // Convertir fechas a formato adecuado para MySQL
     const fechaEntFormatted = formData.fechaEnt.toISOString().split('T')[0];
     const fechaCadFormatted = formData.fechaCad.toISOString().split('T')[0];
+
+    // Verificar si la fecha de caducidad está vencida
+    if (verificarVencimiento(fechaCadFormatted)) {
+      return; // Si la fecha está vencida, no proceder con el envío
+    }
 
     const loteData = {
       ...formData,
@@ -61,10 +81,15 @@ const Lote = () => {
       fechaCad: fechaCadFormatted,
       idestados: '', // El estado será determinado por el backend
     };
-
+    
     axios.post('http://localhost:5000/lote', loteData)
       .then(response => {
-        alert('Lote agregado correctamente');
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Lote agregado correctamente',
+        });
+  
         // Actualizar la lista de lotes después de agregar uno nuevo
         axios.get('http://localhost:5000/lotes')
           .then(response => setLotes(response.data))
@@ -72,26 +97,48 @@ const Lote = () => {
       })
       .catch(error => {
         console.error(error);
-        alert('Error al agregar lote');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un problema al agregar el lote',
+        });
       });
   };
 
   const handleDelete = (idlote) => {
-    if (window.confirm('¿Estás seguro de eliminar este lote?')) {
-      axios.delete(`http://localhost:5000/lote/${idlote}`)
-        .then(response => {
-          alert('Lote eliminado correctamente');
-          // Actualizar la lista de lotes
-          axios.get('http://localhost:5000/lotes')
-            .then(response => setLotes(response.data))
-            .catch(error => console.error(error));
-        })
-        .catch(error => {
-          console.error(error);
-          alert('Error al eliminar lote');
-        });
-    }
-  };
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Esta acción eliminará el lote permanentemente.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/lote/${idlote}`)
+          .then(response => {
+            Swal.fire({
+              icon: 'success',
+              title: '¡Eliminado!',
+              text: 'El lote ha sido eliminado correctamente.',
+            });
+            // Actualizar la lista de lotes después de la eliminación
+            axios.get('http://localhost:5000/lotes')
+              .then(response => setLotes(response.data))
+              .catch(error => console.error(error));
+          })
+          .catch(error => {
+            console.error(error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un problema al eliminar el lote.',
+            });
+          });
+      }
+    });
+  }
 
   return (
     <div>
